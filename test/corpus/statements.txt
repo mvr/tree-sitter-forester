@@ -7,8 +7,10 @@ Text
 --------------------------------------------------------------------------------
 
 (source_file
-  (p
-    (text)))
+  (command
+    (command_name)
+    (argument
+      (text))))
 
 ================================================================================
 Subtree
@@ -31,19 +33,29 @@ Subtree
   (subtree
     (addr
       (text))
-    (text)
-    (title
-      (text))
-    (text)
-    (p
-      (text)))
+    (argument
+      (text)
+      (command
+        (command_name)
+        (argument
+          (text)))
+      (text)
+      (command
+        (command_name)
+        (argument
+          (text)))))
   (subtree
-    (text)
-    (title
-      (text))
-    (text)
-    (p
-      (text))))
+    (argument
+      (text)
+      (command
+        (command_name)
+        (argument
+          (text)))
+      (text)
+      (command
+        (command_name)
+        (argument
+          (text))))))
 
 ================================================================================
 Method call
@@ -54,8 +66,8 @@ Method call
 --------------------------------------------------------------------------------
 
 (source_file
-  (ident
-    (text_identifier))
+  (command
+    (command_name))
   (hash_ident))
 
 ================================================================================
@@ -67,8 +79,10 @@ Contributor
 --------------------------------------------------------------------------------
 
 (source_file
-  (contributor
-    (text)))
+  (command
+    (command_name)
+    (argument
+      (text))))
 
 ================================================================================
 Meta
@@ -79,8 +93,11 @@ Meta
 --------------------------------------------------------------------------------
 
 (source_file
-  (meta
-    (text)
+  (command
+    (command_name)
+    (argument
+      (text)))
+  (braces
     (text)))
 
 ================================================================================
@@ -93,10 +110,14 @@ Tags
 --------------------------------------------------------------------------------
 
 (source_file
-  (tag
-    (text))
-  (tag
-    (text)))
+  (command
+    (command_name)
+    (argument
+      (text)))
+  (command
+    (command_name)
+    (argument
+      (text))))
 
 ================================================================================
 Author
@@ -107,8 +128,10 @@ Author
 --------------------------------------------------------------------------------
 
 (source_file
-  (author
-    (text)))
+  (command
+    (command_name)
+    (argument
+      (text))))
 
 ================================================================================
 Import
@@ -119,8 +142,9 @@ Import
 --------------------------------------------------------------------------------
 
 (source_file
-  (import
-    (addr
+  (command
+    (command_name)
+    (argument
       (text))))
 
 ================================================================================
@@ -132,8 +156,9 @@ Export
 --------------------------------------------------------------------------------
 
 (source_file
-  (export
-    (addr
+  (command
+    (command_name)
+    (argument
       (text))))
 
 ================================================================================
@@ -146,10 +171,14 @@ Date
 --------------------------------------------------------------------------------
 
 (source_file
-  (date
-    (text))
-  (date
-    (text)))
+  (command
+    (command_name)
+    (argument
+      (text)))
+  (command
+    (command_name)
+    (argument
+      (text))))
 
 ================================================================================
 Title
@@ -160,8 +189,10 @@ Title
 --------------------------------------------------------------------------------
 
 (source_file
-  (title
-    (text)))
+  (command
+    (command_name)
+    (argument
+      (text))))
 
 ================================================================================
 Transclusion
@@ -172,8 +203,9 @@ Transclusion
 --------------------------------------------------------------------------------
 
 (source_file
-  (transclude
-    (addr
+  (command
+    (command_name)
+    (argument
       (text))))
 
 ================================================================================
@@ -185,11 +217,13 @@ Ident
 --------------------------------------------------------------------------------
 
 (source_file
-  (p
-    (ident
-      (text_identifier))
-    (braces
-      (text))))
+  (command
+    (command_name)
+    (argument
+      (command
+        (command_name)
+        (argument
+          (text))))))
 
 ================================================================================
 Inline Math
@@ -202,10 +236,12 @@ Inline Math
 --------------------------------------------------------------------------------
 
 (source_file
-  (p
-    (text)
-    (inline_math
-      (text))))
+  (command
+    (command_name)
+    (argument
+      (text)
+      (inline_math
+        (text)))))
 
 ================================================================================
 Display Math
@@ -218,10 +254,12 @@ Display Math
 --------------------------------------------------------------------------------
 
 (source_file
-  (p
-    (text)
-    (display_math
-      (text))))
+  (command
+    (command_name)
+    (argument
+      (text)
+      (display_math
+        (text)))))
 
 ================================================================================
 Math Text
@@ -240,25 +278,31 @@ Math Text
 --------------------------------------------------------------------------------
 
 (source_file
-  (p
-    (text)
-    (display_math
-      (text)))
-  (p
-    (text)
-    (display_math
-      (text))
-    (text)
-    (inline_math
-      (text)))
-  (p
-    (text)
-    (display_math
-      (text))
-    (text)
-    (inline_math
-      (text))
-    (text)))
+  (command
+    (command_name)
+    (argument
+      (text)
+      (display_math
+        (text))))
+  (command
+    (command_name)
+    (argument
+      (text)
+      (display_math
+        (text))
+      (text)
+      (inline_math
+        (text))))
+  (command
+    (command_name)
+    (argument
+      (text)
+      (display_math
+        (text))
+      (text)
+      (inline_math
+        (text))
+      (text))))
 
 ================================================================================
 Math Commands
@@ -273,19 +317,21 @@ Math Commands
 --------------------------------------------------------------------------------
 
 (source_file
-  (p
-    (text)
-    (display_math
+  (command
+    (command_name)
+    (argument
       (text)
-      (braces
-        (text))
-      (text)
-      (braces
-        (text))
-      (text)
-      (braces
-        (text))
-      (text))))
+      (display_math
+        (text)
+        (braces
+          (text))
+        (text)
+        (braces
+          (text))
+        (text)
+        (braces
+          (text))
+        (text)))))
 
 ================================================================================
 Default
@@ -297,9 +343,10 @@ Default
 
 (source_file
   (default
-    identifier: (ident
-      (text_identifier))
-    argument: (text)))
+    identifier: (identifier
+      name: (command_name))
+    argument: (argument
+      (text))))
 
 ================================================================================
 Namespace
@@ -311,10 +358,13 @@ Namespace
 
 (source_file
   (namespace
-    identifier: (ident
-      (text_identifier))
-    body: (p
-      (text))))
+    identifier: (identifier
+      name: (command_name))
+    body: (argument
+      (command
+        name: (command_name)
+        argument: (argument
+          (text))))))
 
 ================================================================================
 Call
@@ -326,8 +376,9 @@ Call
 
 (source_file
   (call
-    object: (ident
-      (text_identifier))
+    object: (argument
+      (command
+        name: (command_name)))
     method: (text)))
 
 ================================================================================
@@ -340,9 +391,10 @@ Datalog
 
 (source_file
   (datalog
-    (text)
-    (braces
-      (text))))
+    (opaque_argument
+      (text)
+      (braces
+        (text)))))
 
 ================================================================================
 Verbatim Block
@@ -383,23 +435,27 @@ Function Definition
 (source_file
   (def
     (fun_spec
-      (ident
-        (text_identifier))
+      (identifier
+        (command_name))
       (text)
       (text)
       (text)
-      (p
-        (ident
-          (text_identifier))
-        (text)
-        (ident
-          (text_identifier))
-        (text)
-        (ident
-          (text_identifier)))
-      (transclude
-        (addr
-          (text))))))
+      (argument
+        (command
+          (command_name)
+          (argument
+            (command
+              (command_name))
+            (text)
+            (command
+              (command_name))
+            (text)
+            (command
+              (command_name))))
+        (command
+          (command_name)
+          (argument
+            (text)))))))
 
 ================================================================================
 Prim
@@ -417,26 +473,55 @@ Prim
 --------------------------------------------------------------------------------
 
 (source_file
-  (p
-    (text)
-    (markdown_link
+  (command
+    (command_name)
+    (argument
       (text)
-      (addr
-        (text)))
-    (text)
-    (ul
+      (markdown_link
+        (link_label
+          (text))
+        (addr
+          (text)))
       (text)
-      (li
-        (unlabeled_link
-          (addr
-            (text))))
-      (text))
-    (text)
-    (markdown_link
+      (command
+        (command_name)
+        (argument
+          (text)
+          (command
+            (command_name)
+            (argument
+              (unlabeled_link
+                (addr
+                  (text)))))
+          (text)))
       (text)
-      (addr
-        (text)))
-    (text)))
+      (markdown_link
+        (link_label
+          (text))
+        (addr
+          (text)))
+      (text))))
+
+================================================================================
+Markdown Link with Math in Label
+================================================================================
+
+\p{[displayed category of #{T}-Moore machines](thesis-djm-003I)}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (command
+    (command_name)
+    (argument
+      (markdown_link
+        (link_label
+          (text)
+          (inline_math
+            (text))
+          (text))
+        (addr
+          (text))))))
 
 ================================================================================
 Scope
@@ -451,11 +536,13 @@ Scope
 
 (source_file
   (scope
-    (text)
-    (put
-      (ident
-        (text_identifier))
-      (text))))
+    (argument
+      (text)
+      (put
+        (identifier
+          (command_name))
+        (argument
+          (text))))))
 
 ================================================================================
 Query
@@ -475,41 +562,44 @@ Query
 (source_file
   (def
     (fun_spec
-      (ident
-        (text_identifier))
+      (identifier
+        (command_name))
       (text)
-      (text)
-      (open
-        (ident
-          (text_identifier)))
-      (text)
-      (ident
-        (text_identifier))
-      (braces
+      (argument
         (text)
-        (ident
-          (text_identifier))
-        (braces
-          (ident
-            (text_identifier))
-          (braces
-            (ident
-              (text_identifier))))
-        (braces
-          (ident
-            (text_identifier)))
-        (braces
-          (ident
-            (text_identifier)))
-        (braces
-          (ident
-            (text_identifier)))
-        (text))
-      (braces
+        (open
+          (identifier
+            (command_name)))
         (text)
-        (taxon
-          (text))
-        (text)))))
+        (command
+          (command_name)
+          (argument
+            (text)
+            (command
+              (command_name)
+              (argument
+                (command
+                  (command_name)
+                  (argument
+                    (command
+                      (command_name))))))
+            (braces
+              (command
+                (command_name)))
+            (braces
+              (command
+                (command_name)))
+            (braces
+              (command
+                (command_name)))
+            (text)))
+        (braces
+          (text)
+          (command
+            (command_name)
+            (argument
+              (text)))
+          (text))))))
 
 ================================================================================
 Objects
@@ -532,25 +622,26 @@ Objects
 (source_file
   (def
     (fun_spec
-      (ident
-        (text_identifier))
-      (text)
-      (object
+      (identifier
+        (command_name))
+      (argument
         (text)
-        (method_decl
+        (object
           (text)
-          (method_body
+          (method_decl
             (text)
-            (text)))
-        (method_decl
-          (text)
-          (method_body
+            (method_body
+              (text)
+              (text)))
+          (method_decl
             (text)
-            (text)
-            (ident
-              (text_identifier))
-            (hash_ident)
-            (text)))))))
+            (method_body
+              (text)
+              (text)
+              (command
+                (command_name))
+              (hash_ident)
+              (text))))))))
 
 ================================================================================
 Patch
@@ -567,16 +658,17 @@ Patch
 
 (source_file
   (patch
-    (ident
-      (text_identifier))
+    (argument
+      (command
+        (command_name)))
     (patch_bindings
       (text))
     (method_decl
       (text)
       (method_body
         (text)
-        (ident
-          (text_identifier))
+        (command
+          (command_name))
         (hash_ident)
         (text)
         (text)))))
@@ -599,49 +691,54 @@ XML
     (text))
   (def
     (fun_spec
-      (ident
-        (text_identifier))
+      (identifier
+        (command_name))
       (text)
-      (xml_tag)
-      (braces
-        (ident
-          (text_identifier)))))
+      (argument
+        (xml_tag)
+        (braces
+          (command
+            (command_name))))))
   (def
     (fun_spec
-      (ident
-        (text_identifier))
+      (identifier
+        (command_name))
       (text)
-      (xml_tag)
-      (braces
-        (ident
-          (text_identifier)))))
+      (argument
+        (xml_tag)
+        (braces
+          (command
+            (command_name))))))
   (def
     (fun_spec
-      (ident
-        (text_identifier))
+      (identifier
+        (command_name))
       (text)
-      (xml_tag)
-      (braces
-        (ident
-          (text_identifier)))))
+      (argument
+        (xml_tag)
+        (braces
+          (command
+            (command_name))))))
   (def
     (fun_spec
-      (ident
-        (text_identifier))
+      (identifier
+        (command_name))
       (text)
-      (xml_tag)
-      (braces
-        (ident
-          (text_identifier)))))
+      (argument
+        (xml_tag)
+        (braces
+          (command
+            (command_name))))))
   (def
     (fun_spec
-      (ident
-        (text_identifier))
+      (identifier
+        (command_name))
       (text)
-      (xml_tag)
-      (braces
-        (ident
-          (text_identifier))))))
+      (argument
+        (xml_tag)
+        (braces
+          (command
+            (command_name)))))))
 
 ================================================================================
 Full
@@ -704,156 +801,186 @@ Full
 --------------------------------------------------------------------------------
 
 (source_file
-  (title
-    (text))
-  (p
-    (text))
-  (transclude
-    (addr
+  (command
+    (command_name)
+    (argument
       (text)))
-  (p
-    (text)
-    (ul
-      (text)
-      (li
-        (text))
-      (text)
-      (li
-        (text))
-      (text))
-    (text)
-    (markdown_link
-      (text)
-      (addr
-        (text)))
-    (text)
-    (unlabeled_link
-      (addr
-        (text)))
-    (text)
-    (code
+  (command
+    (command_name)
+    (argument
       (text)))
-  (ident
-    (text_identifier))
-  (braces
-    (text)
-    (markdown_link
+  (command
+    (command_name)
+    (argument
+      (text)))
+  (command
+    (command_name)
+    (argument
       (text)
-      (addr
-        (text)))
-    (text)
-    (unlabeled_link
-      (addr
-        (text)))
-    (text)
-    (code
-      (text))
-    (text))
+      (command
+        (command_name)
+        (argument
+          (text)
+          (command
+            (command_name)
+            (argument
+              (text)))
+          (text)
+          (command
+            (command_name)
+            (argument
+              (text)))
+          (text)))
+      (text)
+      (markdown_link
+        (link_label
+          (text))
+        (addr
+          (text)))
+      (text)
+      (unlabeled_link
+        (addr
+          (text)))
+      (text)
+      (command
+        (command_name)
+        (argument
+          (text)))))
+  (command
+    (command_name)
+    (argument
+      (text)
+      (markdown_link
+        (link_label
+          (text))
+        (addr
+          (text)))
+      (text)
+      (unlabeled_link
+        (addr
+          (text)))
+      (text)
+      (command
+        (command_name)
+        (argument
+          (text)))
+      (text)))
   (braces
     (text))
   (def
     (fun_spec
-      (ident
-        (text_identifier))
-      (text)
-      (object
+      (identifier
+        (command_name))
+      (argument
         (text)
-        (method_decl
+        (object
           (text)
-          (method_body
+          (method_decl
             (text)
-            (text)))
-        (method_decl
-          (text)
-          (method_body
+            (method_body
+              (text)
+              (text)))
+          (method_decl
             (text)
-            (text)
-            (ident
-              (text_identifier))
-            (hash_ident)
-            (text))))))
+            (method_body
+              (text)
+              (text)
+              (command
+                (command_name))
+              (hash_ident)
+              (text)))))))
   (patch
-    (ident
-      (text_identifier))
+    (argument
+      (command
+        (command_name)))
     (patch_bindings
       (text))
     (method_decl
       (text)
       (method_body
         (text)
-        (ident
-          (text_identifier))
+        (command
+          (command_name))
         (hash_ident)
         (text)
         (text))))
-  (ident
-    (text_identifier))
-  (braces
-    (text)
-    (ident
-      (text_identifier))
-    (braces
-      (markdown_link
-        (text)
-        (addr
-          (text))))
-    (braces
-      (unlabeled_link
-        (addr
-          (text))))
-    (text)
-    (ident
-      (text_identifier))
-    (braces
-      (markdown_link
-        (text)
-        (addr
-          (text))))
-    (braces
-      (unlabeled_link
-        (addr
-          (text))))
-    (text)
-    (ident
-      (text_identifier))
-    (braces
-      (markdown_link
-        (text)
-        (addr
-          (text))))
-    (braces
-      (text))
-    (text)
-    (ident
-      (text_identifier))
-    (braces
-      (markdown_link
-        (text)
-        (addr
-          (text))))
-    (braces
-      (text))
-    (text)
-    (ident
-      (text_identifier))
-    (braces
-      (markdown_link
-        (text)
-        (addr
-          (text))))
-    (braces
-      (text)))
-  (scope
-    (text)
-    (put
-      (ident
-        (text_identifier))
-      (text))
-    (text)
-    (query_tree
+  (command
+    (command_name)
+    (argument
       (text)
-      (ident
-        (text_identifier))
+      (command
+        (command_name)
+        (argument
+          (markdown_link
+            (link_label
+              (text))
+            (addr
+              (text)))))
+      (braces
+        (unlabeled_link
+          (addr
+            (text))))
+      (text)
+      (command
+        (command_name)
+        (argument
+          (markdown_link
+            (link_label
+              (text))
+            (addr
+              (text)))))
+      (braces
+        (unlabeled_link
+          (addr
+            (text))))
+      (text)
+      (command
+        (command_name)
+        (argument
+          (markdown_link
+            (link_label
+              (text))
+            (addr
+              (text)))))
       (braces
         (text))
-      (text))))
+      (text)
+      (command
+        (command_name)
+        (argument
+          (markdown_link
+            (link_label
+              (text))
+            (addr
+              (text)))))
+      (braces
+        (text))
+      (text)
+      (command
+        (command_name)
+        (argument
+          (markdown_link
+            (link_label
+              (text))
+            (addr
+              (text)))))
+      (braces
+        (text))))
+  (scope
+    (argument
+      (text)
+      (put
+        (identifier
+          (command_name))
+        (argument
+          (text)))
+      (text)
+      (command
+        (command_name)
+        (argument
+          (text)
+          (command
+            (command_name)
+            (argument
+              (text)))
+          (text))))))
