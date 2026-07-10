@@ -36,7 +36,6 @@ module.exports = grammar({
         $.let,
         $.datalog,
         $.tex,
-        $.scope,
         $.subtree,
         $.put,
         $.default,
@@ -46,7 +45,6 @@ module.exports = grammar({
         $.decl_xmlns,
         $.object,
         $.patch,
-        $.call,
         $.hash_ident,
         $.verbatim_block,
         $.linebreak,
@@ -56,7 +54,6 @@ module.exports = grammar({
         $._link,
         $.squares,
         $.parens,
-        $.braces,
         $.text,
         $.comment,
         $.command,
@@ -66,7 +63,8 @@ module.exports = grammar({
     squares: ($) => squares(optional(repeat1($._node))),
     parens: ($) => parens(optional(repeat1($._node))),
 
-    xml_tag: ($) => seq("\\<", $._xml_qname, ">"),
+    xml_tag: ($) =>
+      seq("\\<", $._xml_qname, ">", repeat(field("argument", $.argument))),
     decl_xmlns: ($) => seq("\\xmlns:", $._xml_base_ident, $._txt_arg),
 
     def: ($) => command_seq("def", $.fun_spec),
@@ -91,7 +89,6 @@ module.exports = grammar({
     datalog: ($) => command_seq("datalog", field("argument", $.opaque_argument)),
     tex: ($) =>
       prec.right(command_seq("tex", repeat1(field("argument", $.opaque_argument)))),
-    scope: ($) => command_seq("scope", $.argument),
     subtree: ($) =>
       prec.left(
         command_seq(
@@ -131,14 +128,6 @@ module.exports = grammar({
             optional($.patch_bindings),
             braces(repeat(choice($.method_decl, $._whitespace))),
           ),
-        ),
-      ),
-    call: ($) =>
-      command_seq(
-        "call",
-        seq(
-          field("object", $.argument),
-          field("method", $._txt_arg),
         ),
       ),
     comment: ($) => /%[^\r\n]*/,
@@ -187,25 +176,20 @@ module.exports = grammar({
         ),
       ),
     command: ($) =>
-      choice(
-        prec.right(
-          2,
-          seq(
-            "\\",
-            field("name", $.command_name),
-            repeat1(field("argument", $.argument)),
-          ),
-        ),
-        seq("\\", field("name", $.command_name)),
+      prec.right(
+        2,
+        seq("\\", field("name", $.command_name), repeat(field("argument", $.argument))),
       ),
     identifier: ($) => seq("\\", field("name", $.command_name)),
     argument: ($) => braces(optional(repeat1(choice($._node)))),
+    _opaque_content: ($) =>
+      repeat1(choice(alias($._opaque_braces, $.braces), alias($._opaque_text, $.text))),
     _opaque_arg: ($) =>
-      braces(repeat(choice(alias($._opaque_braces, $.braces), alias($._opaque_text, $.text)))),
+      braces(optional($._opaque_content)),
     opaque_argument: ($) =>
-      braces(repeat(choice(alias($._opaque_braces, $.braces), alias($._opaque_text, $.text)))),
+      braces(optional($._opaque_content)),
     _opaque_braces: ($) =>
-      braces(repeat(choice(alias($._opaque_braces, $.braces), alias($._opaque_text, $.text)))),
+      braces(optional($._opaque_content)),
     _opaque_text: ($) => /([^{}]|\\[{}])+/,
     _link: ($) => choice($.markdown_link, $.unlabeled_link),
     addr: ($) => prec(1, $.text),

@@ -22,13 +22,11 @@
 (method_decl key: (_) @method)
 (patch "patch" @text.diff.add)
 (patch object: (_) @constant)
-(call "call" @function)
 
 (markdown_link label: (_) @label)
 (markdown_link dest: (_) @text.uri)
 (unlabeled_link target: (_) @text.uri)
 
-(scope "scope" @namespace)
 (put "put" @variable.parameter)
 (default "put?" @variable.parameter)
 (open "open" @namespace)
